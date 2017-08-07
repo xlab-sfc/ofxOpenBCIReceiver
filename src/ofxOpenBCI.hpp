@@ -21,10 +21,8 @@ public:
     void update();
     void drawGraph();
     
-    
     ofxOscReceiver receiver;
     
-    vector<vector<float>> bci;
     array<array<float, 126>, 16> values;
 };
 
