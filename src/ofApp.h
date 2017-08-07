@@ -1,11 +1,10 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxOsc.h"
+#include "ofxOpenBCI.hpp"
 
 // listen on port 12345
 #define PORT 12345
-#define NUM_MSG_STRINGS 20
 
 class ofApp : public ofBaseApp {
 	public:
@@ -26,8 +25,5 @@ class ofApp : public ofBaseApp {
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-    ofxOscReceiver receiver;
-    
-    vector<vector<float>> bci;
-    array<array<float, 126>, 16> values;
+    ofxOpenBCIReceiver receiver;
 };
