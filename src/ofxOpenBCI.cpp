@@ -30,11 +30,12 @@ void ofxOpenBCIReceiver::update() {
         
         if (m.getAddress() == "/openbci") {
             // receives 126 values starting from channel num and float continues
+            if (m.getArgAsInt(0) == 1) values.clear();
             vector<float> inf;
-            int chan = m.getArgAsInt(0);
             for (int i=1; i<m.getNumArgs(); i++) {
-                values.at(chan-1).at(i) = m.getArgAsFloat(i);
+                inf.push_back(m.getArgAsFloat(i));
             }
+            values.push_back(inf);
         }
         else{
             cout << "unknown: " << m.getNumArgs() << endl;
@@ -46,7 +47,28 @@ void ofxOpenBCIReceiver::update() {
 void ofxOpenBCIReceiver::drawGraph() {
     ofPushMatrix();
     ofTranslate(pos);
-    for (int i=0; i<16; i++) {
+    
+    for (int i=0; i<values.size(); i++) {
+        ofPolyline p;
+        float width = size.x / float(values.at(i).size()-1);
+        for (int j=0; j<values.at(i).size(); j++) {
+            p.addVertex(j*width, size.y - size.y * log(values.at(i).at(j)+1) * scale);
+        }
+        p.draw();
+    }
+    
+    ofPopMatrix();
+}
+
+void ofxOpenBCIReceiver::drawGraphInRange() {
+    ofPushMatrix();
+    ofTranslate(pos);
+    cout << "size: " << values.size() << endl;
+    if (values.size() != 0) {
+        cout << ".at(i).size(): " << values.at(0).size() << endl;
+    }
+    
+    for (int i=0; i<values.size(); i++) {
         ofPolyline p;
         float width = float(size.x / end);
         for (int j=begin; j<end; j++) {
@@ -54,5 +76,6 @@ void ofxOpenBCIReceiver::drawGraph() {
         }
         p.draw();
     }
+    
     ofPopMatrix();
 }

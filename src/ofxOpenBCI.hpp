@@ -19,6 +19,7 @@ public:
     void setPort(int _port);
     void update();
     void drawGraph();
+    void drawGraphInRange();
     
     // SETTERS
     void setScale(float _scale) {scale = _scale;};
@@ -27,14 +28,15 @@ public:
     void setRange(int _begin, int _end) {begin = _begin; end = _end;};
     
     // GETTERS
-    array<array<float, 126>, 16> getValues() {return values;};
-    array<float, 126> getChannel(int _c) {return values.at(_c);};
+    vector<vector<float>> getValues() {return values;};
+    vector<float> getChannel(int _c) {return values.at(_c);};
     
     void debug();
     
 private:
     ofxOscReceiver receiver;
-    array<array<float, 126>, 16> values;
+//    array<array<float, 126>, 16> values;
+    vector<vector<float>> values;
     
     float scale;
     ofVec2f pos, size;
