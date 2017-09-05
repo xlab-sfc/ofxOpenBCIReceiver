@@ -9,11 +9,11 @@ Confirmed Working on :
 
 ## Examples
 * ofxOpenBCI Datafilter
-![Datafilter picture](https://raw.githubusercontent.com/kkshmz/ofxOpenBCI/docs/openbci-datafilter.png)
+![Datafilter picture](https://raw.githubusercontent.com/kkshmz/ofxOpenBCI/master/docs/openbci-datafilter.png)
 * * Able to log values
 * * Able to send values through button as desired time
 * ofxOpenBCI reciever example
-![datarecieve](https://raw.githubusercontent.com/kkshmz/ofxOpenBCI/docs/openbci-datarecieve.png)
+![datarecieve](https://raw.githubusercontent.com/kkshmz/ofxOpenBCI/master/docs/openbci-datarecieve.png)
 
 ## Dependencies
 - ofxOsc
