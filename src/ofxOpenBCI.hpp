@@ -15,7 +15,7 @@ class ofxOpenBCIReceiver {
 public:
     ofxOpenBCIReceiver();
     void setReceivePort(int _port);
-    void setSendPort(string _host, int _port);
+    void setSendPort(std::string _host, int _port);
     void update();
     void drawRawGraph();
     void drawRawGraphInRange();
@@ -30,8 +30,8 @@ public:
     void logValues();
     void trimValues();
     void smoothOut();
-    float getMaxInValues();
-    vector<float> getSum(vector<vector<float>> _in, bool _divide);
+    float getMaxInValues() const;
+    std::vector<float> getSum(const std::vector<std::vector<float>> &_in, bool _divide) const;
     
     // SETTERS
     void setScale(float _scale) {scale = _scale;};
@@ -40,19 +40,19 @@ public:
     void setRange(int _begin, int _end) {begin = _begin; end = _end;};
     
     // GETTERS
-    bool isReceiving() {return receivedData;};
+    bool isReceiving() const {return receivedData;};
     bool hasWaitingMessages() {return receiver.hasWaitingMessages();};
-    vector<vector<float>> getValues() {return values;};
-    vector<float> getChannel(int _c) {return values.at(_c);};
+    const std::vector<std::vector<float>> &getValues() const {return values;};
+    const std::vector<float> &getChannel(int _c) const {return values.at(_c);};
     
     void debug();
     
 private:
     ofxOscReceiver receiver;
     ofxOscSender sender;
-    vector<vector<float>> values;
-    vector<vector<float>> svalues;
-    vector<vector<vector<float>>> pvalues;
+    std::vector<std::vector<float>> values;
+    std::vector<std::vector<float>> svalues;
+    std::vector<std::vector<std::vector<float>>> pvalues;
     int pastValues = 5;
     
     float scale;
