@@ -235,6 +235,7 @@ float ofxOpenBCIReceiver::getMaxInValues() {
 
 vector<float> ofxOpenBCIReceiver::getSum(vector<vector<float>> _in, bool _divide) {
     if (_in.size() == 0) return;
+    if (_in.size() == 0) return {};
     float divideby = _in.size();
     vector<float> sum;
     sum.resize(_in.at(0).size());
