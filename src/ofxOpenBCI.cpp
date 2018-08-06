@@ -8,6 +8,8 @@
 
 #include "ofxOpenBCI.hpp"
 
+using namespace std;
+
 ofxOpenBCIReceiver::ofxOpenBCIReceiver() {
     scale = 0.2;
     pos = ofVec2f(0,0);
@@ -224,7 +226,7 @@ void ofxOpenBCIReceiver::smoothOut() {
     svalues = sum;
 }
 
-float ofxOpenBCIReceiver::getMaxInValues() {
+float ofxOpenBCIReceiver::getMaxInValues() const {
     float max = 0;
     for (int i=0; i<values.size(); i++) {
         float _max = *max_element(values.at(i).begin(), values.at(i).end());
@@ -233,8 +235,8 @@ float ofxOpenBCIReceiver::getMaxInValues() {
     return max;
 }
 
-vector<float> ofxOpenBCIReceiver::getSum(vector<vector<float>> _in, bool _divide) {
-    if (_in.size() == 0) return;
+vector<float> ofxOpenBCIReceiver::getSum(const vector<vector<float>> &_in, bool _divide) const {
+    if (_in.size() == 0) return {};
     float divideby = _in.size();
     vector<float> sum;
     sum.resize(_in.at(0).size());
